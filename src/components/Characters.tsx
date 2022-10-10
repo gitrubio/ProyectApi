@@ -20,9 +20,13 @@ export default function Characters() {
             setCharacters(modelarCaracters(res.data.data.results))
         })
     }
-    const data = () =>{
-    const arrayfilter =  characters.filter((char) => (char.name.toLowerCase()).includes(filtro.trim().toLowerCase())).map((char) => <CardCharacter description={char.description} comics={char.comics} name={char.name} img={char.img} />) 
-    return arrayfilter.length > 0 ? arrayfilter : (<div><h1>NOT FOUND</h1></div>)
+    const data = () => {
+        return   characters.filter((char) => (
+            char.name.toLowerCase()).includes(filtro.trim().toLowerCase()))
+            .map((char) => 
+            <CardCharacter description={char.description} comics={char.comics} name={char.name} img={char.img}/>)
+     
+   
     }
     return (
         <>
