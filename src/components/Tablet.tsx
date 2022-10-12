@@ -3,13 +3,18 @@ import { ICaracter } from '../interfaces/Marvel.interfaces'
 import Card from './Card'
 export default function Tablet(props: { characters: ICaracter[] }) {
     const [paginator, setPaginator] = useState(1)
+    const [maxPaginator,setMaxPaginator] = useState(1)
     const maxItems = 8;
+
+    useEffect(()=>{
+    setMaxPaginator(Math.ceil(props.characters.length / maxItems))
+    },[])
 
     const movePaginatorAfter = () => {
         if(paginator-1 > 0)  setPaginator(paginator-1)
     } 
     const movePaginatorBefore = () => {
-        if(paginator+1 < 4)  setPaginator(paginator+1)
+        if(paginator+1 < (maxPaginator+1))  setPaginator(paginator+1)
     }
 
     const viewData = () => {
