@@ -1,18 +1,13 @@
 import { useState } from 'react'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Characters from './components/Characters'
+import Layout from './components/Layout'
 
 function App() {
 
   return (
-   <div className='' style={{width: '100%'}}>
-      <h1>MARVEL COMIC'S</h1>
-      <div style={{ display: 'flex', width: '100%', justifyContent: 'end' , paddingRight: '8%', borderRadius : 0}}>
-      </div>
-      <Characters ></Characters>
-   </div>
-  )
+    <Layout></Layout>
+   )
 }
 
 export default App
