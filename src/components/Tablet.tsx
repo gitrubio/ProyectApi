@@ -5,6 +5,12 @@ export default function Tablet(props: { characters: ICaracter[] }) {
     const [paginator, setPaginator] = useState(1)
     const maxItems = 8;
 
+    const movePaginatorAfter = () => {
+        if(paginator-1 > 0)  setPaginator(paginator-1)
+    } 
+    const movePaginatorBefore = () => {
+        if(paginator+1 < 4)  setPaginator(paginator+1)
+    }
 
     const viewData = () => {
         return props.characters.filter((char, index) => index >= ((paginator - 1) * maxItems) && index < (paginator * maxItems)).map((char, index) =>
@@ -17,7 +23,7 @@ export default function Tablet(props: { characters: ICaracter[] }) {
 
         for (let index = 0; index < Math.ceil(props.characters.length / maxItems); index++) {
             pages.push(
-                <a id={(index + 1).toString()} className={paginator==(index + 1) ? 'active': ''} onClick={() => { setPaginator(index + 1) }}><li>{index + 1}</li></a>
+                <a key={index + 1} id={(index + 1).toString()} className={paginator==(index + 1) ? 'active': ''} onClick={() => { setPaginator(index + 1) }}><li>{index + 1}</li></a>
             )
 
         }
@@ -30,9 +36,9 @@ export default function Tablet(props: { characters: ICaracter[] }) {
        <div className='paginator-center'>
        <div className="pagination page">
                 <ul>
-                    <a ><li>{'<'}</li></a>
+                    <a ><li onClick={movePaginatorAfter}>{'<'}</li></a>
                     {indexPaginator()} 
-                    <a ><li>{'>'}</li></a>
+                    <a ><li onClick={movePaginatorBefore}>{'>'}</li></a>
                 </ul>
             </div>
        </div>
